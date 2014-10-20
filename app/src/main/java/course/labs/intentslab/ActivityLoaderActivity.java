@@ -69,7 +69,7 @@ public class ActivityLoaderActivity extends Activity {
         Intent explicitIntent = new Intent(ActivityLoaderActivity.this,
                 ExplicitlyLoadedActivity.class);
 
-        // Use the Intent to start the ExplicitlyLoacded Activity
+        // Use the Intent to start the ExplicitlyLoaded Activity
         startActivityForResult(explicitIntent, GET_TEXT_REQUEST_CODE);
 
 	}
@@ -104,12 +104,17 @@ public class ActivityLoaderActivity extends Activity {
         
 		Log.i(TAG, "Entered onActivityResult()");
 		
-		// TODO - Process the result only if this method received both a
+		// TO.DO - Process the result only if this method received both a
 		// RESULT_OK result code and a recognized request code
 		// If so, update the Textview showing the user-entered text.
 
-	
-    
+        if (requestCode == GET_TEXT_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                String newText = data.getExtras().getString(ExplicitlyLoadedActivity.EXTRA_TEXT);
+
+                mUserTextView.setText(newText);
+            }
+        }
     
     
     

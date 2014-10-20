@@ -13,6 +13,7 @@ import android.widget.EditText;
 public class ExplicitlyLoadedActivity extends Activity {
 
 	static private final String TAG = "Lab-Intents";
+    public static final String EXTRA_TEXT = "extra-text";
 
 	private EditText mEditText;
 	
@@ -47,17 +48,20 @@ public class ExplicitlyLoadedActivity extends Activity {
 
 		Log.i(TAG,"Entered enterClicked()");
 		
-		// TODO - Save user provided input from the EditText field
-        final EditText text = (EditText) findViewById(R.id.editText);
+		// TO.DO - Save user provided input from the EditText field
+        final String text = mEditText.getText().toString();
 
-		// TODO - Create a new intent and save the input from the EditText field as an extra
+        Log.i(TAG,text);
+
+		// TO.DO - Create a new intent and save the input from the EditText field as an extra
 		Intent activityLoaderIntent = new Intent();
-        activityLoaderIntent.setData(Uri.parse(text.toString()));
+        activityLoaderIntent.setAction(Intent.ACTION_SEND);
+        activityLoaderIntent.putExtra(EXTRA_TEXT, text);
 
+		// TO.DO - Set Activity's result with result code RESULT_OK
+		this.setResult(RESULT_OK, activityLoaderIntent);
 
-		// TODO - Set Activity's result with result code RESULT_OK
-		
-		// TODO - Finish the Activity
-
+		// TO.DO - Finish the Activity
+        finish();
 	}
 }
